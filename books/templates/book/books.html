@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h4>Books</h4>
+<ul>
+{% for b in book %}
+
+
+    <li>{{b.name}}</li>
+
+
+
+{% empty %}
+
+<li>creat new book</li>
+
+{% endfor %}
+</ul>
+{% endblock content %}
