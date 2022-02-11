@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<h2>book name : {{book}}</h2>
+
+
+<h3>comments:</h3>
+
+<ul>
+    {% for comment in comments %}
+    <li>
+        {{comment}}
+    </li>
+    {%empty%}
+        <li>
+            creat first comment .
+        </li>
+    {% endfor %}
+
+    <form action="{% url 'books:book_detail' book.id %}" method="post">
+
+        {{form.as_p}}
+        {% csrf_token %}
+        <button name="submit">add comment</button>
+    </form>
+
+</ul>
+
+
+
+
+
+{% endblock content %}

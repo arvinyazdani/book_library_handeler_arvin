@@ -7,13 +7,17 @@
 {% for b in book %}
 
 
-    <li>{{b.name}}</li>
+    <li>
+        <a href="{% url 'books:book_detail' b.id %}">{{b.name}}</a>
+    </li>
 
 
 
 {% empty %}
 
-<li>creat new book</li>
+    <li>
+        creat new book
+    </li>
 
 {% endfor %}
 </ul>
