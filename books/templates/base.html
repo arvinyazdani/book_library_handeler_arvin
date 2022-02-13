@@ -3,5 +3,14 @@
     
     <a href="{% url 'books:book' %}">Books</a>
 </p>
+<p>
+    {% if user.is_authenticated %}
+    Hello , {{user.username}} , 
+    <a  href="{% url 'users:logout' %}">logout</a>
+    {% else %}
+    <a  href="{% url 'users:login' %}">login , </a>
+    <a  href="{% url 'users:register' %}">Register</a>
+    {% endif %}
+</p>
 
 {% block content %}{% endblock content %}
