@@ -1,18 +1,22 @@
-{% extends 'base.html' %}
 
+{% extends 'base.html' %}
 {% block content %}
+{% if form.errors %}
+    <p>pass or name dident match .</p>
+{% endif %}
 
 <form action="{% url 'users:login' %}" method="POST">
-
     {% csrf_token %}
-    {{ form.as_p }}
-    <button name="submit">login</button>
-    <input type="hidden" name='next' value="{% url 'books:index' %}">
-
-</form>
-
-
-
-
+    {{form.as_p}}
+    <button name='submit'>log in </button>
+    <input type='hidden' name="next" value="{%url 'books:index' %}">
+</form> 
 
 {% endblock content %}
+
+
+
+
+
+
+

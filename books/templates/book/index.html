@@ -1,6 +1,24 @@
+
 {% extends 'base.html' %}
+
+{% block page-header %}
+<div class="jumbotron">
+    <h1 class="display-3">Track ypur learning</h1>
+    <p class="lead">Jumbo helper text</p>
+    <hr class="my-2">
+    <p>More info</p>
+    <p class="lead">
+        <a class="btn btn-primary btn-lg" href="{% url 'users:register' %}" role="button">Register</a>
+    </p>
+</div>
+
+
+{% endblock page-header %}
 
 {% block content %}
 
-<p>hello to my library</p>
-{% endblock content %}
+<p class="lead">
+    <a class="btn btn-primary btn-lg" href="{% url 'books:book' %}" role="button">Books</a>
+</p>
+
+{% endblock content %} 

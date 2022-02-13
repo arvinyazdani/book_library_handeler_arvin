@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     #myapps
     'books',
     'users',
+    #third_apps
+    'bootstrap4',
 ]
 
 MIDDLEWARE = [
