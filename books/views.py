@@ -17,6 +17,8 @@ def books(request):
 def book(request,book_id):
     book = Book.objects.get(id=book_id)
     comments = book.comment_set.order_by("-date_added")
+    img_obj = book.image_set.get()
+
     if request.method != "POST":
         form = CommentForm()
     else:
@@ -29,5 +31,5 @@ def book(request,book_id):
             return redirect("books:book_detail",book_id)
 
     
-    context = {"book":book,"comments":comments, "form":form}
+    context = {"book":book,"comments":comments, "form":form,'img_obj':img_obj}
     return render(request, "book/book_detail.html", context)

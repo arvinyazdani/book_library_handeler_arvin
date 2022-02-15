@@ -1,9 +1,21 @@
 {% extends 'base.html' %}
 
+{% block page-header %}
+
+<h2>book name : {{book}}</h2>
+
+{% if img_obj %}
+  
+  <img src="{{ img_obj.image.url}}" alt="connect" style="max-height:200px">
+{% endif %}
+
+
+
+{% endblock page-header %}
+
 
 {% block content %}
 
-<h2>book name : {{book}}</h2>
 
 
 <h3>comments:</h3>
@@ -11,7 +23,11 @@
 <ul>
     {% for comment in comments %}
     <li>
-        {{comment}}
+        <h5>commented by : {{comment.author}}</h5>
+        
+            <p>comment : {{comment}}</p>
+            <p>at : {{ comment.date_added|date:'M d, Y H:i' }}</p>
+        
     </li>
     {%empty%}
         <li>
@@ -19,14 +35,16 @@
         </li>
     {% endfor %}
 
-    <form action="{% url 'books:book_detail' book.id %}" method="post">
-
-        {{form.as_p}}
-        {% csrf_token %}
-        <button name="submit">add comment</button>
-    </form>
+    
 
 </ul>
+
+<form action="{% url 'books:book_detail' book.id %}" method="post">
+
+    {{form.as_p}}
+    {% csrf_token %}
+    <button name="submit">add comment</button>
+</form>
 
 
 

@@ -3,28 +3,39 @@
 {% block content %}
 
 <h4>Books</h4>
-<ul>
+
+
+<div class="card-deck bg-dark" style="max-width:100px max-height:100px">
+    
+
+
+
+
 {% for b in book %}
 
-
-    <li>
-        <a href="{% url 'books:book_detail' b.id %}">
-            
-            {{b.name}}
-
-        </a>
-    </li>
+    <div class="card" style="max-width:100px max-height:100px">
+            <div class="card" >
+                <img class="card-img-top"  src="{{ b.image_set.get.image.url}}" alt="{{b.name}}">
+                <div class="card-body">
+                  <h4 class="card-title">{{b.name}}</h4>
+                  <p class="card-text">Some example text.</p>
+                  <a href="{% url 'books:book_detail' b.id %}">See Book</a>
+                </div>
+              </div>
+        
+     </div>
 
 
 
 {% empty %}
 
-    <li>
-        creat new book
-    </li>
+    
+     <h3>   creat new book </h3>
+    
 
 {% endfor %}
-</ul>
+
+    </div>
 {% endblock content %}
 
 

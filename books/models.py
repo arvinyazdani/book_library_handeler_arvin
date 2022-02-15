@@ -17,7 +17,7 @@ class Book(models.Model):
     title = models.CharField(max_length=10, choices=TITLE_CHOICES, default="psychology")
 
     def __str__(self):
-        return f"book name is {self.name}"
+        return self.name
 
 class Comment(models.Model):
     body = models.CharField(max_length=200)
@@ -26,7 +26,15 @@ class Comment(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"commented by : {self.author} , comment : {self.body[:20]}..."
+        return self.body
     
 
     
+class Image(models.Model):
+    title = models.CharField(max_length=200)
+    image = models.ImageField(upload_to=f'media/images/%Y/%m/%d/',blank=True)
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+
+
+    def __str__(self):
+        return self.title
