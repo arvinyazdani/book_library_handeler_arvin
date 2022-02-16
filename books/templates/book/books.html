@@ -1,42 +1,63 @@
 {% extends 'base.html' %}
 
+
+{% block page-header %}
+
+
+
+<p class="lead">
+  <a class="btn btn-primary btn-lg" href="{% url 'books:book' %}" role="button">Books</a>
+</p>
+
+{% if mode %}
+    <h6>mode : {{mode}}</h6>
+
+{% else %}
+
+<h6>mode : All Books</h6>
+
+{% endif %}
+
+
+{% endblock page-header %}
+
+
+
+
 {% block content %}
 
-<h4>Books</h4>
 
 
-<div class="card-deck bg-dark" style="max-width:100px max-height:100px">
+
     
+<div class="row">
+  
 
 
 
-
-{% for b in book %}
-
-    <div class="card" style="max-width:100px max-height:100px">
-            <div class="card" >
-                <img class="card-img-top"  src="{{ b.image_set.get.image.url}}" alt="{{b.name}}">
-                <div class="card-body">
-                  <h4 class="card-title">{{b.name}}</h4>
-                  <p class="card-text">Some example text.</p>
-                  <a href="{% url 'books:book_detail' b.id %}">See Book</a>
-                </div>
-              </div>
-        
-     </div>
+    {% for b in book %}
+    <div class="col-sm-6">
+    <div class="card" style="max-width:350px">
+      <img class="card-img-top" src="{{ b.image_set.get.image.url}}" alt="{{b.name}}">
+      <div class="card-body">
+        <h4 class="card-title">{{b.name}}</h4>
+        <p class="card-text">Some example text.</p>
+        <a href="{% url 'books:book_detail' b.id %}">See Book</a>
+      </div>
+    </div>
+  </div>
 
 
-
-{% empty %}
+    {% empty %}
 
     
      <h3>   creat new book </h3>
     
 
-{% endfor %}
+    {% endfor %}
 
-    </div>
-{% endblock content %}
+</div>
+    {% endblock content %}
 
 
 

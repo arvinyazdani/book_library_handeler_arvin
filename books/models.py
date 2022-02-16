@@ -8,13 +8,19 @@ TITLE_CHOICES = (
                 ("roman","Roman") 
                     )
 
+STATUS_CHOICES = (
+                ("basy",'Basy'),
+                ('free','Free'))
+
 class Book(models.Model):
     name = models.CharField(max_length=50)
     author = models.CharField(max_length=20)
     price = models.PositiveSmallIntegerField()
     date_added = models.DateTimeField()
-    counter = models.PositiveSmallIntegerField() 
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default="free")
     title = models.CharField(max_length=10, choices=TITLE_CHOICES, default="psychology")
+    basy_user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    basy_date = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -38,3 +44,10 @@ class Image(models.Model):
 
     def __str__(self):
         return self.title
+
+
+
+
+
+
+        

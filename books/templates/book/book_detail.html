@@ -2,12 +2,39 @@
 
 {% block page-header %}
 
+
+<h1>Details Book</h1>
+
 <h2>book name : {{book}}</h2>
 
 {% if img_obj %}
   
   <img src="{{ img_obj.image.url}}" alt="connect" style="max-height:200px">
 {% endif %}
+
+<ul>
+    <li>
+        <p>
+            Author : {{book.author}}
+        </p>
+    </li>
+    <li>
+        <p>
+            Status : {{book.status}}
+        </p>
+    </li>
+    <li>
+        <p>
+            Price : {{book.price}}
+        </p>
+    </li>
+    <li>
+        <p>
+           Title : {{book.title}} 
+        </p>
+    </li>
+
+</ul>
 
 
 
@@ -37,6 +64,7 @@
 
     
 
+
 </ul>
 
 <form action="{% url 'books:book_detail' book.id %}" method="post">
@@ -46,8 +74,13 @@
     <button name="submit">add comment</button>
 </form>
 
-
-
+<ol>
+{% for p in person %}
+    <li>
+    <h6>give this book by : {{p}}</h6>
+    </li>
+{% endfor %}
+</ol>
 
 
 {% endblock content %}

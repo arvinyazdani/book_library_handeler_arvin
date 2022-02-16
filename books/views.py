@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Book
 from .forms import CommentForm
 from django.contrib.auth.decorators import login_required
-
+from django.contrib.auth.models import User
 
 def index(request):
     return render(request, 'book/index.html')
@@ -16,7 +16,7 @@ def books(request):
 @login_required
 def book(request,book_id):
     book = Book.objects.get(id=book_id)
-    comments = book.comment_set.order_by("-date_added")
+    comments = book.comment_set.order_by("-date_added")[:10]
     img_obj = book.image_set.get()
 
     if request.method != "POST":
@@ -33,3 +33,16 @@ def book(request,book_id):
     
     context = {"book":book,"comments":comments, "form":form,'img_obj':img_obj}
     return render(request, "book/book_detail.html", context)
+
+
+
+
+@login_required
+def filter_mode(request, mode):
+    book = Book.objects.filter(title=mode).order_by('-date_added')
+    context = {"book":book,"mode":mode}
+    return render(request, 'book/books.html', context)
+
+
+
+

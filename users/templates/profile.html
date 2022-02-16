@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+
+{% block page-header %}
+
+<h2>Profile : {{user.username}}</h2>
+
+{% endblock page-header %}
+
+{% block content %}
+<h4>basy books for this user : </h4>
+<ol>
+{% for b in books %}
+    <li>
+       <p><a href="{% url 'books:book_detail' b.id %}">{{b.name}}</a></p>
+       <p>at : {{ b.basy_date|date:'M d, Y H:i' }}</p>
+    </li>
+{% endfor %}
+</ol>
+
+{% endblock content %}
