@@ -36,7 +36,16 @@
 
 </ul>
 
-
+{% if send %}
+    <h6>your request sended for admin!</h6>
+{% else %}
+<h6>send your for give this book</h6>
+<form action="{% url 'books:book_detail' book.id %}" method="post">
+    {{form2.as_p}}
+    {% csrf_token %}
+    <button name="submit">send request</button>
+</form>
+{% endif %}
 
 {% endblock page-header %}
 

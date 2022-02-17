@@ -1,6 +1,7 @@
+from cProfile import label
 from django import forms
-from .models import Comment
-from .models import Image
+from .models import Comment, RequestBook
+
 
 class CommentForm(forms.ModelForm):
 	""" creat topic for client """
@@ -10,11 +11,17 @@ class CommentForm(forms.ModelForm):
 		fields = ['body']
 		label = {'body': 'comment type : '}
 
-'''
-class ImageForm(forms.ModelForm):
-    """Form for the image model"""
-    class Meta:
-        model = Image
-        fields = ('title', 'image')
-'''		
+class RequestForm(forms.ModelForm):
+	""" creat topic for client """
+	class Meta:
+		""" auth elemans for form"""
+		model = RequestBook
+		fields = ['text_to_admin']
+		label = {'text_to_admin': 'send request : '}		
+
+
+
+		
+
+
 

@@ -1,8 +1,8 @@
 from django.contrib import admin
-from .models import Book, Comment, Image
+from .models import Book, Comment, Image, RequestBook
 
 #admin.site.register(Book)
-#admin.site.register(Comment)
+admin.site.register(RequestBook)
 
 
 @admin.register(Book)

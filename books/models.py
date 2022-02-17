@@ -45,6 +45,21 @@ class Image(models.Model):
     def __str__(self):
         return self.title
 
+class RequestBook(models.Model):
+    request_user = models.ForeignKey(User, on_delete=models.CASCADE)
+    date_added = models.DateTimeField(auto_now_add=True)
+    requested_book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    text_to_admin = models.CharField(max_length=100, null=True)
+
+    def __str__(self):
+        return f'By : {self.request_user} for Book : {self.requested_book}'
+
+
+
+
+
+
+
 
 
 
